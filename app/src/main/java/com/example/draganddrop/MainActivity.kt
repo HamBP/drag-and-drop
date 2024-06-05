@@ -58,7 +58,7 @@ fun DragAndDropList() {
             val index = items.indexOf(item)
             val modifier = if (draggedItemIndex == index) {
                 Modifier
-                    .offset(y = offsetY.roundToInt().dp)
+                    .offset(y = (offsetY.roundToInt() / 2.625).dp)
                     .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
             } else {
                 Modifier
@@ -73,6 +73,7 @@ fun DragAndDropList() {
                                 draggedItemIndex = index
                             },
                             onDrag = { change, dragAmount ->
+                                val index = items.indexOf(item)
                                 change.consume()
                                 offsetY += dragAmount.y
                                 val newIndex =
